@@ -12,6 +12,8 @@ export const Projects = () => {
       description: "Full primary school portal featuring admissions, curriculum highlights, upcoming school events, and parent portal.",
       link: "https://bakita-primary-school.vercel.app/",
       tags: ["Next.js", "React", "Tailwind CSS", "Education"],
+      icon: "🏫",
+      gradient: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)",
       group: "platforms"
     },
     {
@@ -20,6 +22,8 @@ export const Projects = () => {
       description: "Modern clinical healthcare platform with online doctor appointment booking, specialties directory, and patient resources.",
       link: "https://vic-falls-clinic.vercel.app/",
       tags: ["Next.js", "Medical", "Booking", "Responsive"],
+      icon: "🏥",
+      gradient: "linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%)",
       group: "platforms"
     },
     {
@@ -28,6 +32,8 @@ export const Projects = () => {
       description: "Verified on-demand trades marketplace connecting homeowners and businesses with background-checked local professionals.",
       link: "https://trust-connect-ashy.vercel.app/",
       tags: ["Full Stack", "Marketplace", "Bookings", "UI/UX"],
+      icon: "🤝",
+      gradient: "linear-gradient(135deg, #003087 0%, #0057d9 50%, #00b8a9 100%)",
       group: "platforms"
     },
     {
@@ -36,6 +42,8 @@ export const Projects = () => {
       description: "Dynamic entertainment tracking web application delivering real-time trending updates, media search, and modern responsive UI.",
       link: "https://ani-pulse.vercel.app/",
       tags: ["React", "API Integration", "Web App"],
+      icon: "⚡",
+      gradient: "linear-gradient(135deg, #4c0519 0%, #881337 50%, #be123c 100%)",
       group: "apps"
     },
     {
@@ -44,6 +52,8 @@ export const Projects = () => {
       description: "Fast and intuitive onboarding and productivity platform engineered to accelerate workflows and project kickoffs.",
       link: "https://jumpstart-blush.vercel.app/",
       tags: ["React", "Productivity", "Modern UI"],
+      icon: "🚀",
+      gradient: "linear-gradient(135deg, #311042 0%, #581c87 50%, #7e22ce 100%)",
       group: "apps"
     },
     {
@@ -52,14 +62,18 @@ export const Projects = () => {
       description: "Polished user authentication and registration portal with clean styling, validation, and seamless state handling.",
       link: "https://login-register-blue.vercel.app/",
       tags: ["Auth Flow", "Forms", "Frontend"],
+      icon: "🔐",
+      gradient: "linear-gradient(135deg, #0c1938 0%, #1e40af 50%, #3b82f6 100%)",
       group: "auth"
     },
     {
-      title: "Login & Register System",
+      title: "Login & Register (Glassmorphism)",
       category: "Identity & Access",
-      description: "Secure and responsive authentication system with accessible form inputs, validation checks, and user onboarding UI.",
+      description: "Glassmorphic authentication portal featuring smooth multi-form switching, validation, and purple neon styling.",
       link: "https://login-register-i6np.vercel.app/",
-      tags: ["Authentication", "Security", "React"],
+      tags: ["Authentication", "Glassmorphism", "React"],
+      icon: "🔑",
+      gradient: "linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)",
       group: "auth"
     },
   ];

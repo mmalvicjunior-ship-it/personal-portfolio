@@ -1,22 +1,36 @@
 import { useState } from "react";
 import { Col } from "react-bootstrap";
-import { BoxArrowUpRight } from "react-bootstrap-icons";
+import { BoxArrowUpRight, Globe, ShieldCheck } from "react-bootstrap-icons";
 
-export const ProjectCard = ({ title, category, description, link, tags = [] }) => {
-  const primaryScreenshot = `https://s.wordpress.com/mshots/v1/${encodeURIComponent(link)}?w=900`;
-  const fallbackScreenshot = `https://api.microlink.io/?url=${encodeURIComponent(link)}&screenshot=true&meta=false&embed=screenshot.url`;
+export const ProjectCard = ({
+  title,
+  category,
+  description,
+  link,
+  tags = [],
+  icon = "🌐",
+  gradient = "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
+}) => {
+  // Ordered screenshot providers that support JavaScript execution for React SPAs
+  const sources = [
+    `https://image.thum.io/get/width/800/crop/600/noanimate/${link}`,
+    `https://s.wordpress.com/mshots/v1/${encodeURIComponent(link)}?w=900`,
+    `https://api.microlink.io/?url=${encodeURIComponent(link)}&screenshot=true&meta=false&embed=screenshot.url`,
+  ];
 
-  const [imageSrc, setImageSrc] = useState(primaryScreenshot);
-  const [hasError, setHasError] = useState(false);
+  const [srcIndex, setSrcIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [allFailed, setAllFailed] = useState(false);
 
   const handleError = () => {
-    if (!hasError) {
-      setHasError(true);
-      setImageSrc(fallbackScreenshot);
+    if (srcIndex < sources.length - 1) {
+      setSrcIndex(prev => prev + 1);
+    } else {
+      setAllFailed(true);
     }
   };
 
-  // Clean display link for browser mockup
+  // Clean URL for browser mockup bar
   const displayUrl = link.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
   return (
@@ -45,15 +59,28 @@ export const ProjectCard = ({ title, category, description, link, tags = [] }) =
             </span>
           </div>
 
-          {/* Live site preview image container */}
-          <div className="proj-imgbx">
-            <img
-              src={imageSrc}
-              alt={`${title} live deployment preview`}
-              onError={handleError}
-              loading="lazy"
-              className="proj-screenshot"
-            />
+          {/* Site preview container */}
+          <div className="proj-imgbx" style={{ background: gradient }}>
+            {/* Always-ready styled placeholder while screenshot loads or if offline */}
+            <div className={`proj-fallback-view ${imageLoaded && !allFailed ? "proj-fallback-hidden" : ""}`}>
+              <div className="proj-fallback-icon">{icon}</div>
+              <div className="proj-fallback-title">{title}</div>
+              <span className="proj-live-pill">
+                <span className="pulse-dot"></span> Live Deployment
+              </span>
+            </div>
+
+            {/* Dynamic live screenshot */}
+            {!allFailed && (
+              <img
+                src={sources[srcIndex]}
+                alt={`${title} live deployment preview`}
+                onLoad={() => setImageLoaded(true)}
+                onError={handleError}
+                loading="lazy"
+                className={`proj-screenshot ${imageLoaded ? "proj-screenshot-visible" : "proj-screenshot-hidden"}`}
+              />
+            )}
 
             {/* Hover overlay with quick details and launch button */}
             <div className="proj-txtx">
